@@ -1,0 +1,28 @@
+#include<lpc214x.h>
+#define ledpin (1<<4)  //define the led  and connecting to p0.4 of microcontroller
+#define sw (1<<5) //define the switch and connecting to p0.5 of microcontroller
+void delay(int n) //defining the delay function
+{ 
+	int i,j;
+	for(i=0;i<n;i++)
+	for(j=0;j<1275;j++);
+}
+		
+int main()  //executing starts from main function
+{
+IO0DIR |=ledpin;  //setting the ledpin as output obviously
+IO0DIR &=~sw; //setting the switch as input obviously
+while(1)  //infinte looping
+	{
+	if((IO0PIN & sw)==0) //both will be set high initially,when switch is pressed its high ,and io0pin will be set high and condition will be true 
+	{
+		IO0SET |=ledpin;  //setting the pin high
+		delay(20000);	  //led on for 2 seconds
+	}
+	else
+	{
+		IO0CLR|=ledpin; //setting the pin low
+		delay(20000);	  //led off for 2 seconds
+	}
+	}
+}
