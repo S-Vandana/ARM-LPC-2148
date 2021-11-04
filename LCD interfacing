@@ -1,0 +1,24 @@
+#include<lpc214x.h>
+#include "lcd.h"
+#define sw (1<<5)
+void delay(int n)
+{
+int i,j;
+for(i=0;i<n;i++)
+for(j=0;j<1275;j++);
+}
+int main()
+{
+init_lcd();
+lcd_clear();
+IO0DIR &=~sw;
+while(1)
+{
+	if((IO0PIN & sw)==0)
+	{
+		lcd_putstring(0,0,"hello arm lpc");
+		lcd_putstring(1,0,"start coding");
+		delay(2000);
+		
+	}
+}
