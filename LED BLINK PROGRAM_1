@@ -1,0 +1,22 @@
+#include<lpc214x.h>
+#define ledpin (1<<4) //connecting the led to the port P0.4 of the microcontroller
+void delay(int n) //defining a delay function
+{ 
+int i,j;  //declaring 2 variables
+for(i=0;i<n;i++)  //outer for loop
+for(j=0;j<1275;j++);  //inner for loop
+}
+int main()  //execution begins from main function
+{
+IO0DIR |=ledpin;  //declaring led as output pin obviously by using |= symbol
+while(1)  //infinite looping
+{	
+
+	
+	IO0SET |=ledpin;  //setting: high for led
+	delay(20000);	   //on for 2 seconds
+	IO0CLR|=ledpin;	//clearing :low for led
+	delay(20000);	 //off for 2 seconds.
+	
+}
+}
